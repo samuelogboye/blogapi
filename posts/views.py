@@ -4,7 +4,7 @@ from .serializers import PostSerializer
 from .permissions import IsAuthorOrReadOnly
 
 class PostListView(generics.ListAPIView):
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by('createdAt')
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
@@ -14,7 +14,7 @@ class PostCreateView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(authorId=self.request.user)
+        serializer.save(author=self.request.user)
 
 class PostDetailView(generics.RetrieveAPIView):
     queryset = Post.objects.all()

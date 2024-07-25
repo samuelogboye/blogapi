@@ -83,3 +83,11 @@ class PostTests(APITestCase):
         url = reverse('post-delete', args=[post.id])
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_search(self):
+        url = reverse('post-list')
+        response = self.client.get(url, {'search': 'Test Post 1'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertGreaterEqual(len(response.data['results']), 1)
+        for result in response.data['results']:
+            self.assertIn('Test Post 1', result['title'] + result['content'])

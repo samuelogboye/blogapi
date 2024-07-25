@@ -30,7 +30,8 @@ class UserTests(APITestCase):
             'password': '123'
         })
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn('password', response.data)
+        self.assertIn('error_code', response.data)
+        self.assertEqual(response.data['detail'][0]['msg'], 'This password is too short. It must contain at least 8 characters.')
 
     def test_register_user_missing_email(self):
         url = reverse('register')

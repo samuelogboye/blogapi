@@ -11,6 +11,7 @@ from core.views import return_home_to_docs
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", return_home_to_docs),
+    path('', include('core.urls')),
     path(
         "api/",
         include(

@@ -20,7 +20,7 @@ This is a simple blog API built with Django. It handles CRUD operations for post
 
 1. Clone the repository:
     ```sh
-    git clone <repository-url>
+    git clone https://github.com/samuelogboye/blogapi.git
     cd blogapi
     ```
 

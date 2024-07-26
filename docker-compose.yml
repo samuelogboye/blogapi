@@ -24,7 +24,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: blog_api_backend
-    command: sh -c "python3 manage.py migrate --noinput &&  python manage.py super && python manage.py runserver 0.0.0.0:8000 && python manage.py generate_data"
+    command: sh -c "python3 manage.py migrate --noinput &&  python manage.py super && python manage.py generate_data && python manage.py runserver 0.0.0.0:8000"
     restart: always
     volumes:
       - .:/code

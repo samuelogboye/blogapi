@@ -12,7 +12,7 @@ class PostTests(APITestCase):
             Post.objects.create(title=f'Test Post {i}', content=f'This is test post {i}.', author=self.user)
 
     def test_create_post_success(self):
-        url = reverse('post-create')
+        url = reverse('post-list-create')
         response = self.client.post(url, data={
             'title': 'New Post',
             'content': 'This is a new post.'
@@ -23,7 +23,7 @@ class PostTests(APITestCase):
 
     def test_create_post_unauthenticated(self):
         self.client.force_authenticate(user=None)
-        url = reverse('post-create')
+        url = reverse('post-list-create')
         response = self.client.post(url, data={
             'title': 'New Post',
             'content': 'This is a new post.'
@@ -31,7 +31,7 @@ class PostTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_retrieve_post_list(self):
-        url = reverse('post-list')
+        url = reverse('post-list-create')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data['results']), 10)  # Assuming default page size is 10
@@ -42,14 +42,14 @@ class PostTests(APITestCase):
 
     def test_retrieve_post_detail(self):
         post = Post.objects.first()
-        url = reverse('post-detail', args=[post.id])
+        url = reverse('post-detail-update-delete', args=[post.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['title'], post.title)
 
     def test_update_post_success(self):
         post = Post.objects.first()
-        url = reverse('post-update', args=[post.id])
+        url = reverse('post-detail-update-delete', args=[post.id])
         response = self.client.put(url, data={
             'title': 'Updated Post',
             'content': 'This is an updated post.'
@@ -62,7 +62,7 @@ class PostTests(APITestCase):
         post = Post.objects.first()
         new_user = get_user_model().objects.create_user(username='newuser', email='newuser@example.com', password='newpass123')
         self.client.force_authenticate(user=new_user)
-        url = reverse('post-update', args=[post.id])
+        url = reverse('post-detail-update-delete', args=[post.id])
         response = self.client.put(url, data={
             'title': 'Updated Post',
             'content': 'This is an updated post.'
@@ -71,7 +71,7 @@ class PostTests(APITestCase):
 
     def test_delete_post_success(self):
         post = Post.objects.first()
-        url = reverse('post-delete', args=[post.id])
+        url = reverse('post-detail-update-delete', args=[post.id])
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Post.objects.count(), 14)
@@ -80,12 +80,12 @@ class PostTests(APITestCase):
         post = Post.objects.first()
         new_user = get_user_model().objects.create_user(username='newuser', email='newuser@example.com', password='newpass123')
         self.client.force_authenticate(user=new_user)
-        url = reverse('post-delete', args=[post.id])
+        url = reverse('post-detail-update-delete', args=[post.id])
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_search(self):
-        url = reverse('post-list')
+        url = reverse('post-list-create')
         response = self.client.get(url, {'search': 'Test Post 1'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertGreaterEqual(len(response.data['results']), 1)

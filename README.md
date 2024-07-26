@@ -49,3 +49,20 @@ This is a simple blog API built with Django. It handles CRUD operations for post
 Run the tests with:
 ```sh
 docker-compose exec web python manage.py test
+```
+
+### API Documentation
+
+Postman collection for API documentation and sample requests.
+
+## Deployment
+
+The application is ready to be deployed on a cloud provider like AWS or Heroku.
+
+### Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request.
+
+### License
+
+This project is licensed under the MIT License.

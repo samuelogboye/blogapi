@@ -13,7 +13,7 @@ urlpatterns = [
     path("", return_home_to_docs),
     path('', include('core.urls')),
     path(
-        "api/",
+        "api/v1/",
         include(
             [
                 path('users/', include('users.urls')),

@@ -84,7 +84,7 @@ WSGI_APPLICATION = "blogapi.wsgi.application"
 # Determine the environment
 ENVIRONMENT = config('ENVIRONMENT', default='development')
 
-if ENVIRONMENT == 'ci':
+if (ENVIRONMENT == 'ci' or ENVIRONMENT == 'development'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

@@ -192,3 +192,12 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = config("DEFAULT_SENDER")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+CELERY_BROKER_URL = 'redis://redis:6379/0'  # Redis container URL
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+# Optional: To store task results in the database
+INSTALLED_APPS += ['django_celery_results']
+CELERY_RESULT_BACKEND = 'django-db'

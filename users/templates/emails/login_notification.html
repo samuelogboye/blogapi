@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #0078d7;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content h1 {
+            font-size: 24px;
+            color: #333333;
+        }
+        .content p {
+            font-size: 16px;
+            color: #555555;
+        }
+        .details {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+        .details p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #333333;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #0078d7;
+            color: #ffffff;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2>A new device logged into your account</h2>
+        </div>
+        <div class="content">
+            <h1>Review a recent login into your account</h1>
+            <p>There was a recent login to your account. Please review the details below:</p>
+            <div class="details">
+                <p><strong>Account:</strong> {{ username }}</p>
+                <p><strong>Login method:</strong> Username</p>
+                <p><strong>IP & Approximate Location:</strong> {{ ip_address }}</p>
+                <p><strong>Device type:</strong> {{ device_type }}</p>
+                <p><strong>Time:</strong> {{ login_time }}</p>
+            </div>
+            {% comment %} <div class="button-container">
+                <a href="{{ account_url }}">Go to my account</a>
+            </div> {% endcomment %}
+        </div>
+        <div class="footer">
+            If this was not you, please reset your password immediately.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Our Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #0078d7;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content h1 {
+            font-size: 24px;
+            color: #333333;
+        }
+        .content p {
+            font-size: 16px;
+            color: #555555;
+            line-height: 1.5;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #0078d7;
+            color: #ffffff;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2>Welcome to Our Platform!</h2>
+        </div>
+        <div class="content">
+            <h1>Hello {{ username }},</h1>
+            <p>
+                We're excited to have you on board! Thank you for signing up with us.
+                Get ready to explore and enjoy the amazing features of our platform.
+            </p>
+            <p>
+                If you have any questions, feel free to reach out to us at any time.
+            </p>
+            <div class="button-container">
+                <a href="{{ dashboard_url }}">Go to My Dashboard</a>
+            </div>
+        </div>
+        <div class="footer">
+            &copy; {{ year }} BestBlog. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

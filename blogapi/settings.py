@@ -32,6 +32,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "drf_spectacular",
     'rest_framework_simplejwt',
+    'django_celery_results',
 ]
 
 
@@ -198,6 +199,4 @@ CELERY_BROKER_URL = 'redis://redis:6379/0'  # Redis container URL
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
-# Optional: To store task results in the database
-INSTALLED_APPS += ['django_celery_results']
 CELERY_RESULT_BACKEND = 'django-db'

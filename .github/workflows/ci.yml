@@ -21,6 +21,16 @@ jobs:
           --health-retries=3
         ports:
           - 3306:3306
+      
+      redis:
+        image: redis:alpine
+        # options: >-
+        #   --health-cmd="redis-cli ping"
+        #   --health-interval=10s
+        #   --health-timeout=5s
+        #   --health-retries=3
+        ports:
+          - 6379:6379
 
     steps:
     - name: Checkout code
@@ -54,6 +64,12 @@ jobs:
           sleep 1
         done
     
+    # - name: Wait for Redis to be ready
+    #   run: |
+    #     while ! redis-cli -h 127.0.0.1 ping; do
+    #       sleep 1
+    #     done
+
     - name: Grant privileges to MySQL user
       env:
         MYSQL_PWD: ${{ secrets.MYSQL_ROOT_PASSWORD }}

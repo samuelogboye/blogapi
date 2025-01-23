@@ -11,13 +11,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY=config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = config('DEBUG')
 
 # Application definition
 DJANGO_APPS = [
@@ -36,7 +33,6 @@ THIRD_PARTY_APPS = [
     'django_celery_results',
 ]
 
-
 CUSTOM_APPS = [
     'core',
     "users",
@@ -45,7 +41,6 @@ CUSTOM_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
-
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -135,7 +130,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -195,12 +189,13 @@ DEFAULT_FROM_EMAIL = config("DEFAULT_SENDER")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-
+# Celery and Redis set up
 CELERY_BROKER_URL = 'redis://redis:6379/0'  # Redis container URL
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
 CELERY_RESULT_BACKEND = 'django-db'
+
 
 if 'test' in sys.argv:
     CELERY_TASK_ALWAYS_EAGER = True

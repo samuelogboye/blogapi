@@ -31,7 +31,7 @@ referencing==0.35.1
 rest-framework-simplejwt==0.0.2
 rpds-py==0.22.3
 six==1.17.0
-sqlparse==0.5.1
+sqlparse==0.5.4
 typing_extensions==4.12.2
 tzdata==2024.2
 uritemplate==4.1.1
